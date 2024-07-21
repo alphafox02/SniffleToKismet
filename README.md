@@ -28,7 +28,7 @@ SniffleToKismet is a proxy tool that bridges the gap between the Sniffle Bluetoo
 
 3. Start the SniffleToKismet proxy with the correct ZMQ details:
    ```sh
-   python3 zmq_to_tcp_proxy.py --zmq-host 0.0.0.0 --zmq-port 12345 --tcp-host 0.0.0.0 --tcp-port 9876
+   python3 sniffletokismet.py --zmq-host 0.0.0.0 --zmq-port 12345 --tcp-host 0.0.0.0 --tcp-port 9876
    ```
 4. Start Kismet
    ```sh
