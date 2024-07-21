@@ -24,6 +24,8 @@ import json
 import struct
 import threading
 import argparse
+import signal
+import sys
 
 def zmq_to_tcp(zmq_host, zmq_port, tcp_host, tcp_port):
     context = zmq.Context()
@@ -57,11 +59,24 @@ def zmq_to_tcp(zmq_host, zmq_port, tcp_host, tcp_port):
             client_socket.close()
             print("Closed client connection")
 
-    while True:
-        client_socket, addr = tcp_socket.accept()
-        print(f"Accepted connection from {addr}")
-        client_handler = threading.Thread(target=handle_client, args=(client_socket,))
-        client_handler.start()
+    def signal_handler(sig, frame):
+        print("Interrupted by user")
+        zmq_socket.close()
+        context.term()
+        tcp_socket.close()
+        print("Cleaned up ZMQ and TCP resources")
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, signal_handler)
+
+    try:
+        while True:
+            client_socket, addr = tcp_socket.accept()
+            print(f"Accepted connection from {addr}")
+            client_handler = threading.Thread(target=handle_client, args=(client_socket,))
+            client_handler.start()
+    except KeyboardInterrupt:
+        signal_handler(None, None)
 
 def parse_float(value):
     try:
