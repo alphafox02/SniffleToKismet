@@ -5,8 +5,8 @@ SniffleToKismet is a proxy tool that bridges the gap between the Sniffle Bluetoo
 ## Features
 - Leverages the Sniffle fork from [Sniffle GitHub](https://github.com/bkerler/Sniffle).
 - Supports ZeroMQ (ZMQ) for data transmission.
-- Converts ZMQ messages to a format compatible with Kismet's ANTSDR capture tool.
-- Provides seamless integration with Kismet for enhanced drone detection and monitoring.
+- Converts ZMQ messages to a format (mostly) compatible with Kismet's ANTSDR capture tool.
+- Provides some integration with Kismet for Bluetooth Remote ID drone detection and monitoring.
 
 ## Requirements
 - Sniffle compatible dongle
