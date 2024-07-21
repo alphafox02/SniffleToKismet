@@ -30,8 +30,12 @@ SniffleToKismet is a proxy tool that bridges the gap between the Sniffle Bluetoo
    ```sh
    python3 zmq_to_tcp_proxy.py --zmq-host 0.0.0.0 --zmq-port 12345 --tcp-host 0.0.0.0 --tcp-port 9876
    ```
+4. Start Kismet
+   ```sh
+   kismet
+   ```
 
-4. Start the Kismet capture tool:
+5. Start the Kismet capture tool:
    ```sh
    kismet_cap_antsdr_droneid --source antsdr-droneid:host=0.0.0.0,port=9876 --connect localhost:3501 --tcp
    ```
